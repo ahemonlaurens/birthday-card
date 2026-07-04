@@ -126,16 +126,16 @@ hr {
 .btn {
   background: #009dd0;
   color: #FFFFFF;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 2px solid #009dd0;
   cursor: pointer;
   display: inline-block;
-  height: 30px;
+  height: 70px;
   margin: 10px 0 15px;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 40px;
+  line-height: 66px;
   width: auto;
-  padding: 0 20px;
+  padding: 0 36px;
   font-family: Arial, sans-serif;
 }
 
@@ -176,5 +176,12 @@ hr {
 
   .eu_co {
     font-size: 14px;
+  }
+
+  .btn {
+    height: 56px;
+    font-size: 30px;
+    line-height: 52px;
+    padding: 0 24px;
   }
 }
