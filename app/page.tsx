@@ -1,66 +1,79 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { Fragment, useState } from "react";
+
+type Lang = "fr" | "en" | "de";
+
+const MESSAGES: Record<Lang, { title: string; body: string; footer: string }> = {
+  fr: {
+    title: "Bon anniversaire",
+    body: "Nous te souhaitons une merveilleuse journée entourée de ceux que tu aimes !",
+    footer: "Avec toute notre affection.",
+  },
+  en: {
+    title: "Happy birthday",
+    body: "We wish you a wonderful day surrounded by the people you love!",
+    footer: "With all our affection.",
+  },
+  de: {
+    title: "Alles Gute zum Geburtstag",
+    body: "Wir wünschen dir einen wunderschönen Tag im Kreise deiner Liebsten!",
+    footer: "Mit herzlichen Grüßen.",
+  },
+};
+
+const LANGS: Lang[] = ["fr", "en", "de"];
 
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("fr");
+  const msg = MESSAGES[lang];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="pg">
+      <div className="pg_cont">
+        <table className="m_tbl" role="presentation">
+          <tbody>
+            <tr>
+              <td>
+                <div className="langSelector">
+                  {LANGS.map((l, i) => (
+                    <Fragment key={l}>
+                      <button
+                        type="button"
+                        className={l === lang ? "active" : ""}
+                        onClick={() => setLang(l)}
+                      >
+                        {l.toUpperCase()}
+                      </button>
+                      {i < LANGS.length - 1 && <span className="sprt" />}
+                    </Fragment>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="eu_h">
+                <span className="a_i" role="img" aria-label="cadeau">
+                  🎂
+                </span>
+                <div>{msg.title}</div>
+              </td>
+            </tr>
+            <tr>
+              <td className="eu_co">
+                <hr />
+                <p style={{ marginTop: 20 }}>{msg.body}</p>
+                <button type="button" className="btn">
+                  🎉
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td className="eu_co fo">{msg.footer}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
