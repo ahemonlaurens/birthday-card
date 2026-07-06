@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auth, signIn, signOut } from "@/auth";
 
 export default async function AuthButton() {
@@ -5,16 +6,22 @@ export default async function AuthButton() {
 
   if (session?.user) {
     return (
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-        className="authBar"
-      >
-        <span>{session.user.name ?? session.user.email}</span>
-        <button type="submit">Se déconnecter</button>
-      </form>
+      <div className="authBar">
+        <span>
+          {session.user.firstName
+            ? [session.user.firstName, session.user.lastName].filter(Boolean).join(" ")
+            : session.user.name ?? session.user.email}
+        </span>
+        <Link href="/profil">Profil</Link>
+        <form
+          action={async () => {
+            "use server";
+            await signOut();
+          }}
+        >
+          <button type="submit">Se déconnecter</button>
+        </form>
+      </div>
     );
   }
 

@@ -7,12 +7,15 @@ import { updateLanguage } from "@/app/actions/language";
 export default function BirthdayCard({
   initialLang,
   isLoggedIn,
+  firstName,
 }: {
   initialLang: Lang;
   isLoggedIn: boolean;
+  firstName?: string | null;
 }) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const msg = MESSAGES[lang];
+  const title = firstName ? msg.titleWithName(firstName) : msg.title;
 
   function selectLang(l: Lang) {
     setLang(l);
@@ -47,7 +50,7 @@ export default function BirthdayCard({
             <span className="a_i" role="img" aria-label="cadeau">
               🎂
             </span>
-            <div>{msg.title}</div>
+            <div>{title}</div>
           </td>
         </tr>
         <tr>
