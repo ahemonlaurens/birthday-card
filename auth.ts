@@ -16,6 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.id = user.id;
       session.user.language = user.language;
       session.user.firstName = user.firstName;
+      session.user.lastName = user.lastName;
       (session.user as { birthDate: string | null }).birthDate = user.birthDate
         ? user.birthDate.toISOString()
         : null;

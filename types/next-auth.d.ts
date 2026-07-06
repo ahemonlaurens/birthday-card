@@ -6,6 +6,7 @@ declare module "next-auth" {
       id: string;
       language: string;
       firstName: string | null;
+      lastName: string | null;
       birthDate: string | null;
     } & DefaultSession["user"];
   }
@@ -15,6 +16,7 @@ declare module "@auth/core/adapters" {
   interface AdapterUser {
     language: string;
     firstName: string | null;
+    lastName: string | null;
     birthDate: Date | null;
   }
 }

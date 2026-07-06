@@ -7,7 +7,11 @@ export default async function AuthButton() {
   if (session?.user) {
     return (
       <div className="authBar">
-        <span>{session.user.firstName ?? session.user.name ?? session.user.email}</span>
+        <span>
+          {session.user.firstName
+            ? [session.user.firstName, session.user.lastName].filter(Boolean).join(" ")
+            : session.user.name ?? session.user.email}
+        </span>
         <Link href="/profil">Profil</Link>
         <form
           action={async () => {

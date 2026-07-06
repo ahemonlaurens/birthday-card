@@ -33,6 +33,15 @@ export default async function ProfilPage() {
                     defaultValue={session.user.firstName ?? ""}
                   />
 
+                  <label htmlFor="lastName">Nom</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    required
+                    defaultValue={session.user.lastName ?? ""}
+                  />
+
                   <label htmlFor="birthDate">Date de naissance</label>
                   <input
                     id="birthDate"

@@ -7,7 +7,7 @@ import BirthdayCard from "@/app/BirthdayCard";
 export default async function Home() {
   const session = await auth();
 
-  if (session?.user && !session.user.firstName) {
+  if (session?.user && (!session.user.firstName || !session.user.lastName)) {
     redirect("/profil");
   }
 

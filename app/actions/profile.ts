@@ -9,14 +9,16 @@ export async function updateProfile(formData: FormData) {
   if (!session?.user?.id) return;
 
   const firstName = (formData.get("firstName") as string | null)?.trim();
+  const lastName = (formData.get("lastName") as string | null)?.trim();
   const birthDateRaw = formData.get("birthDate") as string | null;
 
-  if (!firstName) return;
+  if (!firstName || !lastName) return;
 
   await prisma.user.update({
     where: { id: session.user.id },
     data: {
       firstName,
+      lastName,
       birthDate: birthDateRaw ? new Date(birthDateRaw) : null,
     },
   });

@@ -15,6 +15,7 @@ model User {
   image         String?
   language      String    @default("fr")
   firstName     String?
+  lastName      String?
   birthDate     DateTime?
   accounts      Account[]
   sessions      Session[]
